@@ -21,4 +21,26 @@ main {
     width: 450px;
     height: 550px;
     border: solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    border: solid;
+    height: 30%;
+    margin: 10px 10px 5px 10px;
+}
+
+.buttons {
+    border: solid;
+    height: 70%;
+    margin: 5px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.button {
+    border: solid;
+    margin: 2px;
 }
