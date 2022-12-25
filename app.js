@@ -26,9 +26,6 @@ function operate(operator, num1, num2) {
         return multiply(num1, num2);
     }
     if (operator === '/') {
-        if (num2 == 0) {
-            alert("Please don't divide by 0 :)")
-        }
         return divide(num1, num2);
     }
 }
@@ -88,6 +85,10 @@ function allClear(e) {
 
 function evalExpression(e) {
     if (currentVal && nextVal && operator) {
+        if (operator === '/' && nextVal == '0') {
+            alert("Please don't divide by 0 :)");
+            return;
+        }
         let endVal = operate(operator, currentVal, nextVal);
         currentDisplay = `${round(currentVal, 6)} ${operator} ${round(nextVal, 6)} =`;
         currentVal = String(endVal);
