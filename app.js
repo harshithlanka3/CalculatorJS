@@ -34,3 +34,21 @@ function operate(operator, num1, num2) {
 function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
+
+const display = document.querySelector('.display');
+const inputs = document.querySelectorAll('.button');
+
+let currentVal = '';
+
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('click', addToCalc);
+}
+
+function addToCalc(e) {
+    const input = this.textContent;
+    if (!'ACDEL%/*-+=+/-.'.includes(input, 0)) {
+        currentVal += input;
+        display.textContent = currentVal;
+    }
+}
+
