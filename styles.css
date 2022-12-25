@@ -25,10 +25,14 @@ main {
     flex-direction: column;
 }
 
-.display {
+.display, .display > div {
     border: solid;
     height: 30%;
     margin: 10px 10px 5px 10px;
+}
+
+#lower {
+    height: 75px;
 }
 
 .buttons {

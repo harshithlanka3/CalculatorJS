@@ -35,11 +35,13 @@ function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
 
-const display = document.querySelector('.display');
+const lowerDisplay = document.querySelector('#lower');
+const upperDisplay = document.querySelector('#upper');
 const numInputs = document.querySelectorAll('.num');
 const opInputs = document.querySelectorAll('.operator');
 const del = document.querySelector('#del');
 
+let currentDisplay = '';
 let currentVal = '';
 let operator = '';
 let nextVal = '';
@@ -58,10 +60,11 @@ function addToDisplay(e) {
     const num = this.textContent;
     if (operator) {
         nextVal += num;
-        display.textContent = nextVal;
+        lowerDisplay.textContent = nextVal;
     } else {
         currentVal += num;
-        display.textContent = currentVal;
+        currentDisplay = currentVal;
+        lowerDisplay.textContent = currentDisplay;
     }
 }
 
@@ -74,6 +77,13 @@ function addOperator(e) {
         return;
     }
     operator = input;
+    if (upperDisplay.textContent) {
+        currentDisplay = currentDisplay.slice(0, -1) + operator;
+    } else {
+        currentDisplay += ` ${operator}`;
+    }
+    upperDisplay.textContent = currentDisplay;
+    lowerDisplay.textContent = '';
 }
 
 function removeDigit(e) {
@@ -82,12 +92,12 @@ function removeDigit(e) {
     }
     if (nextVal.length > 0) {
         nextVal = nextVal.slice(0,-1);
-        display.textContent = nextVal;
+        lowerDisplay.textContent = nextVal;
         return;
     }
     if (currentVal && currentVal.length > 0) {
         currentVal = currentVal.slice(0,-1);
-        display.textContent = currentVal;
+        lowerDisplay.textContent = currentVal;
         return;
     }
 }
