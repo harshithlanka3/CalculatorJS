@@ -37,11 +37,10 @@ function round(value, decimals) {
 
 const display = document.querySelector('.display');
 const numInputs = document.querySelectorAll('.num');
-const opInputs = document.querySelectorAll('.operand');
+const opInputs = document.querySelectorAll('.operator');
 const del = document.querySelector('#del');
 
 let currentVal = '';
-let operatorTaken = false;
 let operator = '';
 let nextVal = '';
 
@@ -50,14 +49,14 @@ for (let i = 0; i < numInputs.length; i++) {
 }
 
 for (let i = 0; i < opInputs.length; i++) {
-    opInputs[i].addEventListener('click', addOperand);
+    opInputs[i].addEventListener('click', addOperator);
 }
 
 del.addEventListener('click', removeDigit);
 
 function addToDisplay(e) {
     const num = this.textContent;
-    if (operatorTaken) {
+    if (operator) {
         nextVal += num;
         display.textContent = nextVal;
     } else {
@@ -66,20 +65,19 @@ function addToDisplay(e) {
     }
 }
 
-function addOperand(e) {
-    const operand = this.textContent;
+function addOperator(e) {
+    const input = this.textContent;
     if (!currentVal) {
         return;
     } 
     if (nextVal) {
         return;
     }
-    operator = operand;
-    operatorTaken = true;
+    operator = input;
 }
 
 function removeDigit(e) {
-    if (nextVal.length === 0 && operatorTaken) {
+    if (nextVal.length === 0 && operator) {
         return;
     }
     if (nextVal.length > 0) {
