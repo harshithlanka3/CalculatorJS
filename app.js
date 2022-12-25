@@ -32,7 +32,7 @@ function operate(operator, num1, num2) {
 
 // Taken from: https://www.jacklmoore.com/notes/rounding-in-javascript/
 function round(value, decimals) {
-    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    return Number(Math.round(Number(value)+'e'+decimals)+'e-'+decimals);
 }
 
 const lowerDisplay = document.querySelector('#lower');
