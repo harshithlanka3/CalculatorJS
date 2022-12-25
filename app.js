@@ -100,8 +100,8 @@ function addOperator(e) {
         return;
     }
     operator = input;
-    currentDisplay = currentVal + ` ${operator}`
-    upperDisplay.textContent = round(currentDisplay, 6);
+    currentDisplay = round(currentVal, 6) + ` ${operator}`
+    upperDisplay.textContent = currentDisplay;
     lowerDisplay.textContent = '';
 }
 
