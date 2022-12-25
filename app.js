@@ -43,6 +43,7 @@ const del = document.querySelector('#del');
 const eq = document.querySelector('#eq');
 const ac = document.querySelector('#ac');
 const dec = document.querySelector('#dec');
+const sign = document.querySelector('#sign');
 
 let currentDisplay = '';
 let currentVal = '';
@@ -59,6 +60,21 @@ del.addEventListener('click', removeDigit);
 eq.addEventListener('click', evalExpression);
 ac.addEventListener('click', allClear);
 dec.addEventListener('click', addDecimal);
+sign.addEventListener('click', changeSign);
+
+function changeSign(e) {
+    if (operator) {
+        if (nextVal) {
+            nextVal = String(Number(nextVal) * -1);
+            lowerDisplay.textContent = round(nextVal, 6);
+        }
+    } else {
+        if (currentVal) {
+            currentVal = String(Number(currentVal) * -1);
+            lowerDisplay.textContent = round(currentVal, 6);
+        }
+    }
+}
 
 function addDecimal(e) {
     if (operator) {
