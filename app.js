@@ -41,6 +41,7 @@ const numInputs = document.querySelectorAll('.num');
 const opInputs = document.querySelectorAll('.operator');
 const del = document.querySelector('#del');
 const eq = document.querySelector('#eq');
+const ac = document.querySelector('#ac');
 
 let currentDisplay = '';
 let currentVal = '';
@@ -50,14 +51,21 @@ let nextVal = '';
 for (let i = 0; i < numInputs.length; i++) {
     numInputs[i].addEventListener('click', addToDisplay);
 }
-
 for (let i = 0; i < opInputs.length; i++) {
     opInputs[i].addEventListener('click', addOperator);
 }
-
 del.addEventListener('click', removeDigit);
-
 eq.addEventListener('click', evalExpression);
+ac.addEventListener('click', allClear);
+
+function allClear(e) {
+    currentDisplay = '';
+    currentVal = '';
+    operator = '';
+    nextVal = '';
+    upperDisplay.textContent = '';
+    lowerDisplay.textContent =''
+}
 
 function evalExpression(e) {
     if (currentVal && nextVal && operator) {
