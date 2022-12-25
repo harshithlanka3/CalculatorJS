@@ -5,9 +5,11 @@
 }
 
 body {
+    font-family: 'Noto Sans Math';
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: aliceblue;
 }
 
 main {
@@ -23,20 +25,30 @@ main {
     border: solid;
     display: flex;
     flex-direction: column;
+    background-color: #313233;
 }
 
-.display, .display > div {
+.display > div {
     border: solid;
-    height: 30%;
     margin: 10px 10px 5px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    background-color: #e2e3e3;
+}
+
+#upper {
+    height: 43px;
+    font-size: 22px;
 }
 
 #lower {
     height: 75px;
+    font-size: 32px;
 }
 
 .buttons {
-    border: solid;
     height: 70%;
     margin: 5px 10px 10px 10px;
     display: grid;
@@ -44,11 +56,27 @@ main {
     grid-template-rows: repeat(5, 1fr);
 }
 
+.button {
+    border: solid;
+    border-color: black;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e3e3;
+    font-size: 26px;
+}
+
+.operator, #eq {
+    background-color: #0558ab;
+    color: #ebf5fe;
+}
+
 #ac {
     grid-column: span 2;
 }
 
-.button {
-    border: solid;
-    margin: 2px;
+#del, #ac {
+    background-color: #ab0558;
+    color: #feebf5;
 }
