@@ -42,6 +42,7 @@ const opInputs = document.querySelectorAll('.operator');
 const del = document.querySelector('#del');
 const eq = document.querySelector('#eq');
 const ac = document.querySelector('#ac');
+const dec = document.querySelector('#dec');
 
 let currentDisplay = '';
 let currentVal = '';
@@ -57,6 +58,21 @@ for (let i = 0; i < opInputs.length; i++) {
 del.addEventListener('click', removeDigit);
 eq.addEventListener('click', evalExpression);
 ac.addEventListener('click', allClear);
+dec.addEventListener('click', addDecimal);
+
+function addDecimal(e) {
+    if (operator) {
+        if (nextVal.length > 0 && !nextVal.includes('.', 0)) {
+            nextVal += '.';
+            lowerDisplay.textContent = nextVal;
+        }
+    } else {
+        if (currentVal.length > 0 && !currentVal.includes('.', 0)) {
+            currentVal += '.';
+            lowerDisplay.textContent = currentVal;
+        }
+    }
+}
 
 function allClear(e) {
     currentDisplay = '';
