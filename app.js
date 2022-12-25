@@ -60,13 +60,15 @@ del.addEventListener('click', removeDigit);
 eq.addEventListener('click', evalExpression);
 
 function evalExpression(e) {
-    let endVal = operate(operator, currentVal, nextVal);
-    currentDisplay = `${currentVal} ${operator} ${nextVal} =`;
-    currentVal = endVal;
-    nextVal = '';
-    operator = '';
-    upperDisplay.textContent = currentDisplay;
-    lowerDisplay.textContent = currentVal;
+    if (currentVal && nextVal && operator) {
+        let endVal = operate(operator, currentVal, nextVal);
+        currentDisplay = `${currentVal} ${operator} ${nextVal} =`;
+        currentVal = String(endVal);
+        nextVal = '';
+        operator = '';
+        upperDisplay.textContent = currentDisplay;
+        lowerDisplay.textContent = currentVal;
+    }
 }
 
 function addToDisplay(e) {
@@ -96,17 +98,17 @@ function addOperator(e) {
 }
 
 function removeDigit(e) {
-    if (nextVal.length === 0 && operator) {
-        return;
-    }
-    if (nextVal.length > 0) {
-        nextVal = nextVal.slice(0,-1);
-        lowerDisplay.textContent = nextVal;
-        return;
-    }
-    if (currentVal && currentVal.length > 0) {
-        currentVal = currentVal.slice(0,-1);
-        lowerDisplay.textContent = currentVal;
-        return;
+    if (operator) {
+        if (nextVal.length > 0) {
+            nextVal = nextVal.slice(0,-1);
+            lowerDisplay.textContent = nextVal;
+            return;
+        }
+    } else {
+        if (currentVal.length > 0) {
+            currentVal = currentVal.slice(0,-1);
+            lowerDisplay.textContent = currentVal;
+            return;
+        }
     }
 }
