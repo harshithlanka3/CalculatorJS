@@ -26,6 +26,9 @@ function operate(operator, num1, num2) {
         return multiply(num1, num2);
     }
     if (operator === '/') {
+        if (num2 == 0) {
+            alert("Please don't divide by 0 :)")
+        }
         return divide(num1, num2);
     }
 }
@@ -125,12 +128,18 @@ function removeDigit(e) {
     if (operator) {
         if (nextVal.length > 0) {
             nextVal = nextVal.slice(0,-1);
+            if (nextVal.length == 1 && nextVal.charAt(0) === '-') {
+                nextVal = '';
+            }
             lowerDisplay.textContent = nextVal;
             return;
         }
     } else {
         if (currentVal.length > 0) {
             currentVal = currentVal.slice(0,-1);
+            if (currentVal.length == 1 && currentVal.charAt(0) === '-') {
+                currentVal = '';
+            }
             lowerDisplay.textContent = currentVal;
             return;
         }
