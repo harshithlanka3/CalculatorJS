@@ -1,18 +1,18 @@
 // Operation functions
 function add(num1, num2) {
-    return num1 + num2;
+    return Number(num1) + Number(num2);
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    return Number(num1) - Number(num2);
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    return Number(num1) * Number(num2);
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    return Number(num1) / Number(num2);
 }
 
 function operate(operator, num1, num2) {
@@ -40,6 +40,7 @@ const upperDisplay = document.querySelector('#upper');
 const numInputs = document.querySelectorAll('.num');
 const opInputs = document.querySelectorAll('.operator');
 const del = document.querySelector('#del');
+const eq = document.querySelector('#eq');
 
 let currentDisplay = '';
 let currentVal = '';
@@ -55,6 +56,18 @@ for (let i = 0; i < opInputs.length; i++) {
 }
 
 del.addEventListener('click', removeDigit);
+
+eq.addEventListener('click', evalExpression);
+
+function evalExpression(e) {
+    let endVal = operate(operator, currentVal, nextVal);
+    currentDisplay = `${currentVal} ${operator} ${nextVal} =`;
+    currentVal = endVal;
+    nextVal = '';
+    operator = '';
+    upperDisplay.textContent = currentDisplay;
+    lowerDisplay.textContent = currentVal;
+}
 
 function addToDisplay(e) {
     const num = this.textContent;
@@ -77,11 +90,7 @@ function addOperator(e) {
         return;
     }
     operator = input;
-    if (upperDisplay.textContent) {
-        currentDisplay = currentDisplay.slice(0, -1) + operator;
-    } else {
-        currentDisplay += ` ${operator}`;
-    }
+    currentDisplay = currentVal + ` ${operator}`
     upperDisplay.textContent = currentDisplay;
     lowerDisplay.textContent = '';
 }
