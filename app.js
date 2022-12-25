@@ -70,12 +70,12 @@ function allClear(e) {
 function evalExpression(e) {
     if (currentVal && nextVal && operator) {
         let endVal = operate(operator, currentVal, nextVal);
-        currentDisplay = `${currentVal} ${operator} ${nextVal} =`;
+        currentDisplay = `${round(currentVal, 6)} ${operator} ${round(nextVal, 6)} =`;
         currentVal = String(endVal);
         nextVal = '';
         operator = '';
         upperDisplay.textContent = currentDisplay;
-        lowerDisplay.textContent = currentVal;
+        lowerDisplay.textContent = round(currentVal,6);
     }
 }
 
@@ -101,7 +101,7 @@ function addOperator(e) {
     }
     operator = input;
     currentDisplay = currentVal + ` ${operator}`
-    upperDisplay.textContent = currentDisplay;
+    upperDisplay.textContent = round(currentDisplay, 6);
     lowerDisplay.textContent = '';
 }
 
