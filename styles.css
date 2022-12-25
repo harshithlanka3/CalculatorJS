@@ -40,6 +40,14 @@ main {
     grid-template-rows: repeat(5, 1fr);
 }
 
+#zero {
+    grid-column: span 2;
+}
+
+#ac {
+    grid-column: span 2;
+}
+
 .button {
     border: solid;
     margin: 2px;

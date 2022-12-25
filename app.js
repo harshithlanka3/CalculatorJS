@@ -36,19 +36,60 @@ function round(value, decimals) {
 }
 
 const display = document.querySelector('.display');
-const inputs = document.querySelectorAll('.button');
+const numInputs = document.querySelectorAll('.num');
+const opInputs = document.querySelectorAll('.operand');
+const del = document.querySelector('#del');
 
 let currentVal = '';
+let operatorTaken = false;
+let operator = '';
+let nextVal = '';
 
-for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('click', addToCalc);
+for (let i = 0; i < numInputs.length; i++) {
+    numInputs[i].addEventListener('click', addToDisplay);
 }
 
-function addToCalc(e) {
-    const input = this.textContent;
-    if (!'ACDEL%/*-+=+/-.'.includes(input, 0)) {
-        currentVal += input;
+for (let i = 0; i < opInputs.length; i++) {
+    opInputs[i].addEventListener('click', addOperand);
+}
+
+del.addEventListener('click', removeDigit);
+
+function addToDisplay(e) {
+    const num = this.textContent;
+    if (operatorTaken) {
+        nextVal += num;
+        display.textContent = nextVal;
+    } else {
+        currentVal += num;
         display.textContent = currentVal;
     }
 }
 
+function addOperand(e) {
+    const operand = this.textContent;
+    if (!currentVal) {
+        return;
+    } 
+    if (nextVal) {
+        return;
+    }
+    operator = operand;
+    operatorTaken = true;
+}
+
+function removeDigit(e) {
+    if (nextVal.length === 0 && operatorTaken) {
+        return;
+    }
+    if (nextVal.length > 0) {
+        nextVal = nextVal.slice(0,-1);
+        display.textContent = nextVal;
+        return;
+    }
+    if (currentVal && currentVal.length > 0) {
+        currentVal = currentVal.slice(0,-1);
+        display.textContent = currentVal;
+        return;
+    }
+}
