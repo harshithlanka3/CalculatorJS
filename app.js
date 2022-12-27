@@ -169,3 +169,18 @@ function removeDigit(e) {
         }
     }
 }
+
+document.addEventListener('keypress', (e) => {
+    const name = e.key;
+    if (!isNaN(name)) {
+        addToDisplay(name);
+    } else if (name === '.') {
+        addDecimal(e);
+    } else if ('+-/*'.includes(name)) {
+        addOperator(name);
+    } else if (name === '=' || name === 'Enter') {
+        evalExpression(e);
+    } else if (name === 'Backspace') {
+        removeDigit(e);
+    }
+  });
