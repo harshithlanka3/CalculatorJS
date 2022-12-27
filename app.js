@@ -51,10 +51,10 @@ let operator = '';
 let nextVal = '';
 
 for (let i = 0; i < numInputs.length; i++) {
-    numInputs[i].addEventListener('click', addToDisplay);
+    numInputs[i].addEventListener('click', addClick);
 }
 for (let i = 0; i < opInputs.length; i++) {
-    opInputs[i].addEventListener('click', addOperator);
+    opInputs[i].addEventListener('click', operatorClick);
 }
 del.addEventListener('click', removeDigit);
 eq.addEventListener('click', evalExpression);
@@ -115,8 +115,12 @@ function evalExpression(e) {
     }
 }
 
-function addToDisplay(e) {
-    const num = this.textContent;
+function addClick(e) {
+    addToDisplay(this.textContent);
+}
+
+function addToDisplay(input) {
+    const num = input;
     if (operator) {
         nextVal += num;
         lowerDisplay.textContent = nextVal;
@@ -127,8 +131,11 @@ function addToDisplay(e) {
     }
 }
 
-function addOperator(e) {
-    const input = this.textContent;
+function operatorClick(e) {
+    addOperator(this.textContent);
+}
+
+function addOperator(input) {
     if (!currentVal) {
         return;
     } 
