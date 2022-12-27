@@ -170,7 +170,7 @@ function removeDigit(e) {
     }
 }
 
-document.addEventListener('keypress', (e) => {
+document.addEventListener('keydown', (e) => {
     const name = e.key;
     if (!isNaN(name)) {
         addToDisplay(name);
